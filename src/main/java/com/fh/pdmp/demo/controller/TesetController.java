@@ -3,16 +3,15 @@ package com.fh.pdmp.demo.controller;
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.alibaba.fastjson.serializer.SerializerFeature;
+import com.fh.pdmp.base.Response;
+import com.fh.pdmp.demo.entity.User;
 import com.fh.pdmp.demo.service.TestService;
+import com.fh.pdmp.demo.util.ExcelUtils;
+import com.fh.pdmp.demo.util.Util;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
-import pdmp.base.Response;
-import pdmp.pojo.User;
-import pdmp.service.IDemoService;
-import pdmp.util.ExcelUtils;
-import pdmp.util.Util;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
@@ -161,7 +160,7 @@ public class TesetController {
         json.put("status", map.get("CHECK_STATUS"));
         json.put("test_user", "1");
         int result = testService.checkTestItemInfo(json);
-        Map<String, Object> resultmap = new HashMap<>();
+        Map<String, Object> resultmap = new HashMap<String, Object>();
         resultmap.put("CHECK_STATUS", map.get("CHECK_STATUS"));
         return result == 1 ? Response.success(resultmap) : Response.error();
     }
@@ -182,7 +181,7 @@ public class TesetController {
         json.put("add_content", map.get("ADD_CONTENT"));
         json.put("edit_user", 36);
         int result = testService.addSupply(json);
-        Map<String, Object> resultmap = new HashMap<>();
+        Map<String, Object> resultmap = new HashMap<String, Object>();
         resultmap.put("CREATE_TIME", Util.stampToDate(json.getString("create_time"), "yyyy-MM-dd HH:mm:ss"));
         return result == 1 ? Response.success(resultmap) : Response.error();
     }
@@ -215,7 +214,7 @@ public class TesetController {
         json.put("delay_reason", map.get("DELAY_REASON"));
         json.put("edit_user", 36);
         int result = testService.addDelay(json);
-        Map<String, Object> resultmap = new HashMap<>();
+        Map<String, Object> resultmap = new HashMap<String, Object>();
         resultmap.put("CREATE_TIME", Util.stampToDate(json.getString("create_time"), "yyyy-MM-dd HH:mm:ss"));
         return result == 1 ? Response.success(resultmap) : Response.error();
     }
